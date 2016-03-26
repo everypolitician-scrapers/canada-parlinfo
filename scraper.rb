@@ -175,9 +175,9 @@ if toget
   got = ScraperWiki.select('DISTINCT(id) FROM data').map { |i| i['id'] } rescue nil
   wanted = got ? toget - got : toget
   warn "#{wanted.count} to fetch"
-  wanted.each_with_index do |r, i| 
+  wanted.take(10).each_with_index do |r, i| 
     warn i if (i % 10).zero?
-    scrape_person r['id'] 
+    scrape_person r
   end
 else
   scrape_list('http://www.lop.parl.gc.ca/parlinfo/Lists/Members.aspx?New=False&Current=False')
