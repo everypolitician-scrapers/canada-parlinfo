@@ -169,11 +169,13 @@ def scrape_person(id)
   ScraperWiki.save_sqlite([:id, :term, :start_date], data) 
 end
 
-res = ScraperWiki.select('DISTINCT(sources.id) FROM sources LEFT JOIN data ON sources.id = data.id WHERE data.name IS NULL') rescue nil
+toget = ScraperWiki.select('DISTINCT(id) FROM sources').map { |i| i['id'] } rescue nil
 
-if res
-  warn "#{res.count} to fetch"
-  res.each_with_index do |r, i| 
+if toget
+  got = ScraperWiki.select('DISTINCT(id) FROM data').map { |i| i['id'] } rescue nil
+  wanted = got ? toget - got : toget
+  warn "#{wanted.count} to fetch"
+  wanted.each_with_index do |r, i| 
     warn i if (i % 10).zero?
     scrape_person r['id'] 
   end
