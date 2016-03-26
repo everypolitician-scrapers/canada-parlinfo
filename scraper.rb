@@ -169,7 +169,7 @@ def scrape_person(id)
   ScraperWiki.save_sqlite([:id, :term, :start_date], data) 
 end
 
-res = ScraperWiki.select('DISTINCT(sources.id) FROM sources LEFT JOIN data ON sources.id = data.id WHERE data.name IS NULL') rescue []
+res = ScraperWiki.select('DISTINCT(sources.id) FROM sources LEFT JOIN data ON sources.id = data.id WHERE data.name IS NULL') rescue nil
 
 if res
   warn "#{res.count} to fetch"
