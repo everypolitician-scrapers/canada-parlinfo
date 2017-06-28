@@ -35,7 +35,7 @@ def scrape_list(url)
 end
 
 class Person
-  PERSON_URL = 'http://www.lop.parl.gc.ca/parlinfo/Files/Parliamentarian.aspx?Item=%s&Language=E'
+  PERSON_URL = 'https://lop.parl.ca/parlinfo/Files/Parliamentarian.aspx?Item=%sLanguage=E'
 
   def initialize(h)
     @data = h
@@ -178,6 +178,6 @@ if toget
     scrape_person r
   end
 else
-  scrape_list('http://www.lop.parl.gc.ca/parlinfo/Lists/Members.aspx?New=False&Current=False')
+  scrape_list('https://lop.parl.ca/parlinfo/Lists/Members.aspx?New=False&Current=False')
   warn 'List updated'
 end
