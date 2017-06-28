@@ -2,7 +2,6 @@
 # encoding: utf-8
 # frozen_string_literal: true
 
-require 'colorize'
 require 'combine_popolo_memberships'
 require 'csv'
 require 'nokogiri'
