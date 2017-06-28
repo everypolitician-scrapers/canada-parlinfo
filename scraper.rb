@@ -4,19 +4,12 @@
 
 require 'combine_popolo_memberships'
 require 'csv'
-require 'nokogiri'
-require 'open-uri'
+require 'pry'
+require 'scraped'
 require 'scraperwiki'
 
-require 'pry'
 require 'open-uri/cached'
 OpenURI::Cache.cache_path = '.cache'
-
-class String
-  def tidy
-    gsub(/[[:space:]]+/, ' ').strip
-  end
-end
 
 def noko_for(url)
   Nokogiri::HTML(open(url).read)
