@@ -156,6 +156,7 @@ end
 def scrape_person(id)
   p = Person.new(id: id)
   data = p.data or return
+  puts data.reject { |_, v| v.to_s.empty? }.sort_by { |k, _| k }.to_h if ENV['MORPH_DEBUG']
   ScraperWiki.save_sqlite(%i[id term start_date], data)
 end
 
